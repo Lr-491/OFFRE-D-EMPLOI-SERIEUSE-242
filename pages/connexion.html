@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--=============== BOXICONS ===============-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+    
+    <title>Connexion | OFFRES D'EMPLOI SERIEUSE 242</title>
+    <link rel="icon" type="image/png" href="../images/logo.jpg" />
+    
+    <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+    <main>
+        <section class="form__card">
+            <p id="msg-succes">Connexion reussit</p>
+            <p id="msg-error">Votre mot de passe où E-mail est inccorect</p>
+            <form action="" method="post">
+                <h1>Connexion</h1>
+                <div class="form-group">
+                    <label for="email">Email :</label>
+                    <input type="email" name="email" id="email" placeholder="Entrer votre E-mail">
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" name="password" id="password" placeholder="Entrer votre Mot de passe">
+                </div> <br>
+                <button id="aff">Afficher</button>
+                <button type="submit" id="btn-login">Connexion</button>
+                
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const form = document.querySelector('form');
+        const msgSucces = document.getElementById('msg-succes');
+        const msgError = document.getElementById('msg-error');
+        const btnAffiche = document.getElementById('aff');
+
+        let validPassword = "123456";
+        let validEmail= "lawalrafiou@gmail.com";
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            if (passwordInput.value === validPassword && emailInput.value === validEmail) {
+                //succes
+                msgSucces.style.display = "block";
+                msgError.style.display = "none";
+            } else {
+                msgError.style.display = "block";
+                msgSucces.style.display = "none";
+            }
+        });
+
+        btnAffiche.addEventListener('click', function(affiche) {
+            affiche.preventDefault();
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                btnAffiche.textContent = "Masquer"
+            } else {
+                passwordInput.type = "password";
+                btnAffiche.textContent = "Affiche"
+            }
+        })
+    </script>
+</body>
+</html>
