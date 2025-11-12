@@ -1,34 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--=============== BOXICONS ===============-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
-    
     <title>Connexion | OFFRES D'EMPLOI SERIEUSE 242</title>
     <link rel="icon" type="image/png" href="../images/logo.jpg" />
-    
     <link rel="stylesheet" href="../css/main.css" />
 </head>
+
 <body>
     <main>
         <section class="form__card">
-            <p id="msg-succes">Connexion reussit</p>
-            <p id="msg-error">Votre mot de passe où E-mail est inccorect</p>
-            <form action="" method="post">
+            <p id="msg-succes">Connexion réussie</p>
+            <p id="msg-error">Votre mot de passe ou E-mail est incorrect</p>
+
+            <form id="loginForm" method="post">
                 <h1>Connexion</h1>
+
                 <div class="form-group">
                     <label for="email">Email :</label>
-                    <input type="email" name="email" id="email" placeholder="Entrer votre E-mail">
+                    <input type="email" name="email" id="email" placeholder="Entrez votre E-mail" required />
                 </div>
-                <div class="form-group">
+
+                <div class="form-group password-group">
                     <label for="password">Mot de passe :</label>
-                    <input type="password" name="password" id="password" placeholder="Entrer votre Mot de passe">
-                </div> <br>
-                <button id="aff">Afficher</button>
+                    <div class="password-field">
+                        <input type="password" name="password" id="password" placeholder="Entrez votre mot de passe"
+                            required />
+                        <i class='bx bx-show' id="togglePassword"></i>
+                    </div>
+                </div>
+
                 <button type="submit" id="btn-login">Connexion</button>
-                
+
+                <p>
+                    Vous n'avez pas de compte ?
+                    <a href="./inscription.html">Inscrivez-vous</a>
+                </p>
             </form>
         </section>
     </main>
@@ -36,19 +46,19 @@
     <script>
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
-        const form = document.querySelector('form');
         const msgSucces = document.getElementById('msg-succes');
         const msgError = document.getElementById('msg-error');
-        const btnAffiche = document.getElementById('aff');
+        const togglePassword = document.getElementById('togglePassword');
+        const form = document.getElementById('loginForm');
 
-        let validPassword = "123456";
-        let validEmail= "lawalrafiou@gmail.com";
+        const validEmail = "lawalrafiou@gmail.com";
+        const validPassword = "123456";
 
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
+        // ✅ Gestion de la connexion
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-            if (passwordInput.value === validPassword && emailInput.value === validEmail) {
-                //succes
+            if (emailInput.value === validEmail && passwordInput.value === validPassword) {
                 msgSucces.style.display = "block";
                 msgError.style.display = "none";
             } else {
@@ -57,17 +67,17 @@
             }
         });
 
-        btnAffiche.addEventListener('click', function(affiche) {
-            affiche.preventDefault();
-
+        // 👁️ Gestion de l'affichage du mot de passe
+        togglePassword.addEventListener('click', () => {
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";
-                btnAffiche.textContent = "Masquer"
+                togglePassword.classList.replace('bx-show', 'bx-hide');
             } else {
                 passwordInput.type = "password";
-                btnAffiche.textContent = "Affiche"
+                togglePassword.classList.replace('bx-hide', 'bx-show');
             }
-        })
+        });
     </script>
 </body>
+
 </html>

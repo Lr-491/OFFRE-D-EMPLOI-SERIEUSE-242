@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscription | OFFRES D'EMPLOI SERIEUSE 242</title>
+
+  <!-- BOXICONS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+  />
+
+  <link rel="icon" type="image/png" href="../images/logo.jpg" />
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+  <main>
+    <section class="form__register">
+      <p id="msg-success">Inscription réussie !</p>
+      <p id="msg-error">Veuillez remplir tous les champs obligatoires *</p>
+
+      <form id="registerForm">
+        <h1>Inscription</h1>
+
+        <div class="form-group">
+          <label for="fullname">Nom complet *</label>
+          <input type="text" id="fullname" name="fullname" placeholder="Entrez votre nom complet" required />
+        </div>
+
+        <div class="form-group">
+          <label for="birthdate">Date de naissance *</label>
+          <input type="date" id="birthdate" name="birthdate" required />
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Genre *</label>
+          <select id="gender" name="gender" required>
+            <option value="">-- Sélectionnez --</option>
+            <option value="Homme">Homme</option>
+            <option value="Femme">Femme</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="nationality">Nationalité (facultatif)</label>
+          <input type="text" id="nationality" name="nationality" placeholder="Ex : Congolaise" />
+        </div>
+
+        <div class="form-group">
+          <label for="address">Adresse complète *</label>
+          <input type="text" id="address" name="address" placeholder="Ville, département, quartier" required />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Téléphone principal *</label>
+          <input type="tel" id="phone" name="phone" placeholder="+242 06 000 0000" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" placeholder="Entrez votre email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="marital">Situation matrimoniale *</label>
+          <select id="marital" name="marital" required>
+            <option value="">-- Sélectionnez --</option>
+            <option value="Célibataire">Célibataire</option>
+            <option value="Marié(e)">Marié(e)</option>
+            <option value="Divorcé(e)">Divorcé(e)</option>
+            <option value="Veuf(ve)">Veuf(ve)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="children">Nombre d’enfants (facultatif)</label>
+          <input type="number" id="children" name="children" min="0" placeholder="0" />
+        </div>
+
+        <div class="form-group">
+          <label for="photo">Photo de profil (facultatif)</label>
+          <input type="file" id="photo" name="photo" accept="image/*" />
+        </div>
+
+        <button type="submit" id="btn-register">S'inscrire</button>
+
+        <p>
+          Vous avez déjà un compte ?
+          <a href="./connexion.html">Connectez-vous</a>
+        </p>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById('registerForm');
+    const msgSuccess = document.getElementById('msg-success');
+    const msgError = document.getElementById('msg-error');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const requiredFields = form.querySelectorAll('[required]');
+      let allFilled = true;
+
+      requiredFields.forEach((field) => {
+        if (!field.value.trim()) {
+          allFilled = false;
+        }
+      });
+
+      if (allFilled) {
+        msgSuccess.style.display = 'block';
+        msgError.style.display = 'none';
+      } else {
+        msgError.style.display = 'block';
+        msgSuccess.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

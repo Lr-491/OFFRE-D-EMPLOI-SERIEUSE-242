@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil | OFFRES D'EMPLOI SERIEUSE 242</title>
+
+    <!-- BOXICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+    <link rel="icon" type="image/png" href="../images/logo.jpg" />
+    <link rel="stylesheet" href="../css/main.css" />
+</head>
+
+<body>
+    <main>
+        <div class="profile-container">
+            <!-- Section de gauche : profil utilisateur -->
+            <aside class="profile__card">
+                <div class="profile-header">
+                    <div class="profile-photo">
+                        <img src="../images/user.png" alt="Photo de profil" id="profileImage">
+                        <label for="uploadPhoto" class="upload-btn">
+                            <i class='bx bx-camera'></i>
+                        </label>
+                        <input type="file" id="uploadPhoto" accept="image/*" hidden />
+                    </div>
+                    <h1 id="profileName">Lawal Rafiou</h1>
+                    <p class="email"><i class='bx bx-envelope'></i> lawalrafiou@gmail.com</p>
+                </div>
+            
+                <div class="profile-info">
+                    <h2>Informations personnelles</h2>
+                    <ul>
+                        <li><i class='bx bx-user'></i> <strong>Nom complet :</strong> <span id="name">Lawal Rafiou</span>
+                        </li>
+                        <li><i class='bx bx-calendar'></i> <strong>Date de naissance :</strong> <span
+                                id="birthdate">12/06/1998</span></li>
+                        <li><i class='bx bx-male-female'></i> <strong>Genre :</strong> <span id="gender">Homme</span></li>
+                        <li><i class='bx bx-globe'></i> <strong>Nationalité :</strong> <span id="nationality">Congolaise</span></li>
+                        <li><i class='bx bx-home'></i> <strong>Adresse :</strong> <span id="address">Brazzaville,
+                                Poto-Poto</span>
+                        </li>
+                        <li>
+                            <i class='bx bx-user-pin'></i>
+                            <strong>Rôle :</strong> <span id="role">Candidat</span>
+                        </li>
+            
+                    </ul>
+            
+                    <h2>Contact</h2>
+                    <ul>
+                        <li><i class='bx bx-phone'></i> <strong>Téléphone :</strong> <span id="phone">+242 06 000
+                                0000</span></li>
+                        <li><i class='bx bx-heart'></i> <strong>Situation matrimoniale :</strong> <span
+                                id="marital">Célibataire</span></li>
+                        <li><i class='bx bx-group'></i> <strong>Nombre d’enfants :</strong> <span id="children">0</span>
+                        </li>
+                    </ul>
+                </div>
+            
+                <div class="profile-actions">
+                    <button id="editProfile"><i class='bx bx-edit'></i> Modifier le profil</button>
+                    <button id="logout"><i class='bx bx-log-out'></i> Déconnexion</button>
+                </div>
+            </aside>
+        
+            <!-- Section principale / centre -->
+            <section class="profile-main">
+                <div class="container">
+                    <!-- condidature card -->
+                    <div class="conditature">
+                        <h2>Mes candidatures</h2>
+                        <ul>
+                            <li>Offre 1 - <span>En cours</span> </li>
+                            <li>Offre 2 - <span>Accepté</span> </li>
+                            <li>Offre 3 - <span>Refusé</span> </li>
+                        </ul>
+                    </div>
+                    <!-- Section infos professionnelles -->
+                    <section class="pro-info-card">
+                        <div class="pro-info-header">
+                            <h2>Infos professionnelles</h2>
+                            <button id="editProInfo"><i class='bx bx-plus'></i> Ajouter infos</button>
+                        </div>
+                    
+                        <ul class="pro-info-list">
+                            <li><strong>Poste :</strong> <span id="pro-poste">-</span></li>
+                            <li><strong>Entreprise :</strong> <span id="pro-entreprise">-</span></li>
+                            <li><strong>Années d'expérience :</strong> <span id="pro-experience">-</span></li>
+                            <li><strong>Compétences :</strong> <span id="pro-skills">-</span></li>
+                            <li><strong>Bio :</strong> <span id="pro-bio">-</span></li>
+                        </ul>
+                    </section>
+
+                    <!-- Vus générale sur les offres -->
+                     <div class="vus__offres">
+                        <div class="offres">
+                            <h1>offres disponible sur le QHSE</h1>
+                            <p>136</p>
+                        </div>
+                        <div class="offres">
+                            <h1>Condidatures envoyé</h1>
+                            <p>16</p>
+                        </div>
+                        <div class="offres">
+                            <h1>Condidatures récus</h1>
+                            <p>0</p>
+                        </div>
+                     </div>
+                    <!-- Section pour le recruteur affiché si seulemnt si l'utilisateur est un recruteur -->
+                    <section class="profile-card recruteur__card">
+                        <div class="profile-header">
+                            <img src="uploads/company.png" alt="Logo" class="avatar">
+                            <div>
+                                <h2>Entreprise ABC</h2>
+                                <p><i class='bx bx-briefcase-alt-2'></i> Recruteur</p>
+                            </div>
+                            <button class="edit-btn"><i class='bx bx-edit'></i> Modifier Profil</button>
+                        </div>
+                    
+                        <ul class="profile-info">
+                            <li><strong>Email:</strong> abc@entreprise.com</li>
+                            <li><strong>Téléphone:</strong> +242 06 111 1111</li>
+                            <li><strong>Adresse:</strong> Brazzaville, Bacongo</li>
+                        </ul>
+                    
+                        <div class="actions">
+                            <button id="editProfile">Publier Offre</button>
+                            <button id="logout" class="delete-btn">Supprimer Compte</button>
+                        </div>
+                    
+                        <h3>Mes offres publiées</h3>
+                        <ul class="applications-list">
+                            <li>Développeur Web - 5 candidats</li>
+                            <li>Marketing Manager - 2 candidats</li>
+                        </ul>
+                    </section>
+            </div>
+        </section>
+        </div>
+
+    </main>
+
+    <script>
+        // 📸 Prévisualisation de la photo de profil
+        const uploadPhoto = document.getElementById("uploadPhoto");
+        const profileImage = document.getElementById("profileImage");
+
+        uploadPhoto.addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    profileImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // 🔐 Bouton de déconnexion (à relier au backend plus tard)
+        document.getElementById("logout").addEventListener("click", () => {
+            alert("Déconnexion réussie !");
+            window.location.href = "./connexion.html";
+        });
+
+        // 📝 Bouton modifier (sera relié à une future page ou modal)
+        document.getElementById("editProfile").addEventListener("click", () => {
+            alert("Fonction de modification à venir !");
+        });
+
+        const editProInfoBtn = document.getElementById('editProInfo');
+
+            editProInfoBtn.addEventListener('click', () => {
+                const poste = prompt("Entrez votre poste :", document.getElementById('pro-poste').textContent);
+                const entreprise = prompt("Entrez votre entreprise :", document.getElementById('pro-entreprise').textContent);
+                const experience = prompt("Entrez vos années d'expérience :", document.getElementById('pro-experience').textContent);
+                const skills = prompt("Entrez vos compétences séparées par des virgules :", document.getElementById('pro-skills').textContent);
+                const bio = prompt("Entrez votre bio :", document.getElementById('pro-bio').textContent);
+
+                if (poste) document.getElementById('pro-poste').textContent = poste;
+                if (entreprise) document.getElementById('pro-entreprise').textContent = entreprise;
+                if (experience) document.getElementById('pro-experience').textContent = experience;
+                if (skills) document.getElementById('pro-skills').textContent = skills;
+                if (bio) document.getElementById('pro-bio').textContent = bio;
+            });
+
+    </script>
+</body>
+
+</html>

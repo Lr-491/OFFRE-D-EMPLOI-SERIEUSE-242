@@ -626,7 +626,7 @@ form {
 }
 
 .form__card form #aff {
-    width: 150px;
+    width: 50px;
     height: 50px;
     padding: 10px;
     border-radius: 5px;
@@ -643,6 +643,7 @@ form {
     font-size: var(--h2-font-size);
     color: var(--Blanc);
     background-color: var(--Bleu-clair-professionnel);
+    margin-top: 30px;
 }
 
 .form__card form #btn-login:hover {
@@ -677,6 +678,425 @@ form {
     display: none;
 }
 
+.form__card p {
+  margin-top: 15px;
+}
+
+.password-group {
+  position: relative;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  padding: 10px 45px 10px 10px; /* espace pour l'icône */
+  border: 1px solid rgba(0, 0, 0, 0.534);
+}
+
+.password-field i {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: var(--Bleu-foncé);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.password-field i:hover {
+  color: var(--Bleu-clair-professionnel);
+}
+
+/* Feedback messages */
+#msg-succes, #msg-error {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* =========================================================
+   INSCRIPTION SECTION
+========================================================= */
+.form__register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#registerForm {
+  width: 480px;
+  height: 1250px;
+  background-color: var(--Blanc);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+#registerForm h1 {
+  color: var(--Bleu-foncé);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#registerForm .form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+#registerForm .form-group label {
+  font-size: var(--h2-font-size);
+  margin-bottom: 6px;
+}
+
+#registerForm .form-group input,
+#registerForm .form-group select {
+  height: 45px;
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
+}
+
+#registerForm .form-group input:focus,
+#registerForm .form-group select:focus {
+  outline: none;
+  border-color: var(--Bleu-clair-professionnel);
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+#btn-register {
+  width: 100%;
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--Bleu-clair-professionnel);
+  color: var(--Blanc);
+  font-size: var(--h2-font-size);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#btn-register:hover {
+  background-color: rgba(0, 0, 255, 0.808);
+}
+
+#msg-success, #msg-error {
+  width: 80%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: var(--h3-font-size);
+  display: none;
+  margin-bottom: 15px;
+}
+
+#msg-success {
+  border-bottom: 3px solid var(--vert);
+  background-color: rgba(6, 194, 6, 0.274);
+  color: var(--Blanc);
+}
+
+#msg-error {
+  border-bottom: 3px solid red;
+  background-color: rgba(194, 6, 6, 0.26);
+  color: var(--Blanc);
+}
+
+/* =========================================================
+   PROFIL SECTION
+========================================================= */
+/* Conteneur principal */
+.profile-container {
+    display: flex;
+    gap: 30px; /* espace entre profil et contenu principal */
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Section profil : à gauche */
+.profile__card {
+  width: 400px; /* largeur fixe pour la sidebar */
+  height: 100%;
+  flex-shrink: 0; /* éviter que la sidebar rétrécisse */
+  margin: 40px auto;
+  background-color: var(--Blanc);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.profile-photo {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  margin-bottom: 15px;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--Bleu-clair-professionnel);
+}
+
+.upload-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: var(--Bleu-clair-professionnel);
+  color: var(--Blanc);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.upload-btn i {
+  font-size: 1.3rem;
+}
+
+.profile-header h1 {
+  color: var(--Bleu-foncé);
+  margin: 10px 0 5px;
+}
+
+.profile-header .email {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.profile-info {
+  text-align: left;
+  margin-top: 25px;
+}
+
+.profile-info h2 {
+  color: var(--Bleu-foncé);
+  font-size: 1.1rem;
+  border-bottom: 2px solid var(--Bleu-clair-professionnel);
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.profile-info ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+.profile-info li {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+}
+
+.profile-info li i {
+  color: var(--Bleu-clair-professionnel);
+  margin-right: 8px;
+  font-size: 1.2rem;
+}
+
+.profile-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.profile-actions button, .recruteur__card button,.actions{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  color: var(--Blanc);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#editProfile {
+  background-color: var(--Bleu-clair-professionnel);
+}
+
+#editProfile:hover {
+  background-color: rgba(0, 0, 255, 0.808);
+}
+
+#logout {
+  background-color: #e63946;
+}
+
+.edit-btn {
+  background-color: #ff6600;
+}
+.edit-btn:hover {
+  background-color: #ff6600bd;
+}
+
+#logout:hover {
+  background-color: #c1121f;
+}
+
+/* Section principale : centre / reste de l'espace */
+.profile-main {
+    flex: 1; /* prend tout l'espace restant */
+}
+
+.conditature {
+  width: 700px;
+  height: auto;
+  background-color: var(--Blanc);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 50px;
+}
+
+
+.pro-info-card {
+    width: 700px;
+    background-color: var(--Blanc);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    margin-top: 30px;
+}
+
+.pro-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.pro-info-header h2 {
+    color: var(--Bleu-foncé);
+    font-size: 1.3rem;
+}
+
+#editProInfo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 15px;
+    background-color: var(--Bleu-clair-professionnel);
+    color: var(--Blanc);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#editProInfo:hover {
+    background-color: rgba(0, 0, 255, 0.8);
+}
+
+.pro-info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pro-info-list li {
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+
+.pro-info-list li strong {
+    color: var(--Bleu-clair-professionnel);
+    margin-right: 8px;
+}
+
+
+.recruteur__card {
+  width: 700px;
+  height: auto;
+  background-color: var(--Blanc);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+
+
+/* Conteneur général */
+.vus__offres {
+  display: flex;
+  gap: 20px; /* espace entre les cartes */
+  justify-content: space-around; /* répartir les cartes */
+  margin: 30px 0;
+  flex-wrap: wrap; /* responsive : passe à la ligne si trop petit */
+}
+
+/* Chaque carte */
+.vus__offres .offres {
+  background-color: var(--Blanc);
+  color: var(--Bleu-foncé);
+  border-radius: 15px;
+  padding: 20px 30px;
+  flex: 1 1 200px; /* largeur flexible avec min 200px */
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+/* Titre de la carte */
+.vus__offres .offres h1 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+/* Nombre ou info */
+.vus__offres .offres p {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Effet au survol */
+.vus__offres .offres:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Responsive pour mobile */
+@media (max-width: 900px) {
+    .profile-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .profile__card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .profile-main {
+        width: 100%;
+    }
+}
 
 /* =========================================================
    RESPONSIVE DESIGN
