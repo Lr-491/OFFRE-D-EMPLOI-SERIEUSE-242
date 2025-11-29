@@ -1,0 +1,223 @@
+Parfait 🔥 !   
+On va poser **les fondations complètes** de ton application d’offres d’emploi :
+➡️ **structure de base PostgreSQL**
+➡️ **modèle de relations**
+➡️ **packages Node.js à installer**
+➡️ **exemples de schémas avec Prisma ORM** (pour que ce soit moderne et maintenable).
+
+---
+
+## 🧩 **1️⃣ Structure générale de ta base de données**
+
+Ton app gérera 4 entités principales :
+
+1. 👤 **Utilisateurs (candidats / recruteurs / admin)**
+2. 🏢 **Entreprises**
+3. 💼 **Offres d’emploi**
+4. 📄 **Candidatures**
+
+Et des relations claires :
+
+* Un **utilisateur** peut être **candidat** ou **recruteur**.
+* Un **recruteur** appartient à **une entreprise**.
+* Un **recruteur** peut publier **plusieurs offres**.
+* Un **candidat** peut postuler à **plusieurs offres**.
+* Une **offre** peut recevoir **plusieurs candidatures**.
+
+---
+
+## 🗂️ **2️⃣ Modèle relationnel simplifié**
+
+```plaintext
+Utilisateurs
+│
+├──< Entreprises (si recruteur)
+│
+└──< Candidatures >── Offres
+                     ↑
+                     |
+               Entreprises
+```
+
+---
+
+## 🧱 **3️⃣ Schéma PostgreSQL (simplifié)**
+
+```sql
+CREATE TABLE utilisateurs (
+  id SERIAL PRIMARY KEY,
+  nom_complet VARCHAR(100) NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  mot_de_passe TEXT NOT NULL,
+  role VARCHAR(20) DEFAULT 'candidat', -- candidat | recruteur | admin
+  date_naissance DATE,
+  genre VARCHAR(10),
+  telephone VARCHAR(20),
+  adresse TEXT,
+  photo_profil TEXT,
+  date_creation TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE entreprises (
+  id SERIAL PRIMARY KEY,
+  nom VARCHAR(100) NOT NULL,
+  logo TEXT,
+  description TEXT,
+  localisation TEXT,
+  recruteur_id INT REFERENCES utilisateurs(id) ON DELETE CASCADE
+);
+
+CREATE TABLE offres (
+  id SERIAL PRIMARY KEY,
+  titre VARCHAR(150) NOT NULL,
+  description TEXT,
+  date_limite DATE,
+  entreprise_id INT REFERENCES entreprises(id) ON DELETE CASCADE,
+  recruteur_id INT REFERENCES utilisateurs(id) ON DELETE CASCADE,
+  date_publication TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE candidatures (
+  id SERIAL PRIMARY KEY,
+  offre_id INT REFERENCES offres(id) ON DELETE CASCADE,
+  candidat_id INT REFERENCES utilisateurs(id) ON DELETE CASCADE,
+  cv TEXT,
+  message TEXT,
+  date_postulation TIMESTAMP DEFAULT NOW(),
+  statut VARCHAR(20) DEFAULT 'En attente' -- En attente | Accepté | Refusé
+);
+```
+
+---
+
+## ⚙️ **4️⃣ Packages Node.js à installer**
+
+Si tu veux un backend propre avec **Express.js + Prisma + PostgreSQL**, installe :
+
+```bash
+npm install express cors dotenv
+npm install @prisma/client
+npm install --save-dev prisma
+npm install bcrypt jsonwebtoken
+npm install pg
+```
+
+### 👉 À quoi servent-ils :
+
+| Package                     | Utilité                                         |
+| :-------------------------- | :---------------------------------------------- |
+| **express**                 | Framework backend (routes, middlewares, etc.)   |
+| **cors**                    | Autoriser les requêtes front-end (Cross-Origin) |
+| **dotenv**                  | Charger les variables d’environnement (.env)    |
+| **pg**                      | Driver PostgreSQL                               |
+| **prisma / @prisma/client** | ORM moderne pour manipuler la base              |
+| **bcrypt**                  | Chiffrer les mots de passe                      |
+| **jsonwebtoken (JWT)**      | Gérer la connexion / tokens sécurisés           |
+
+---
+
+## 💾 **5️⃣ Exemple de configuration Prisma**
+
+Dans ton projet :
+
+```bash
+npx prisma init
+```
+
+Dans `.env` :
+
+```env
+DATABASE_URL="postgresql://user:password@localhost:5432/emploi_db?schema=public"
+```
+
+Dans `prisma/schema.prisma` :
+
+```prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Utilisateur {
+  id             Int       @id @default(autoincrement())
+  nom_complet    String
+  email          String    @unique
+  mot_de_passe   String
+  role           String    @default("candidat")
+  date_naissance DateTime?
+  genre          String?
+  telephone      String?
+  adresse        String?
+  photo_profil   String?
+  date_creation  DateTime  @default(now())
+  entreprise     Entreprise?
+  candidatures   Candidature[]
+  offres         Offre[]   @relation("RecruteurOffres")
+}
+
+model Entreprise {
+  id           Int       @id @default(autoincrement())
+  nom          String
+  logo         String?
+  description  String?
+  localisation String?
+  recruteur    Utilisateur @relation(fields: [recruteurId], references: [id])
+  recruteurId  Int
+  offres       Offre[]
+}
+
+model Offre {
+  id              Int          @id @default(autoincrement())
+  titre           String
+  description     String
+  date_limite     DateTime?
+  date_publication DateTime @default(now())
+  entreprise      Entreprise @relation(fields: [entrepriseId], references: [id])
+  entrepriseId    Int
+  recruteur       Utilisateur @relation("RecruteurOffres", fields: [recruteurId], references: [id])
+  recruteurId     Int
+  candidatures    Candidature[]
+}
+
+model Candidature {
+  id              Int        @id @default(autoincrement())
+  cv              String?
+  message         String?
+  date_postulation DateTime @default(now())
+  statut          String     @default("En attente")
+  offre           Offre      @relation(fields: [offreId], references: [id])
+  offreId         Int
+  candidat        Utilisateur @relation(fields: [candidatId], references: [id])
+  candidatId      Int
+}
+```
+
+Puis exécute :
+
+```bash
+npx prisma migrate dev --name init
+```
+
+---
+
+## 🚀 **6️⃣ Avantages de cette approche**
+
+✅ Base **relationnelle solide et évolutive**
+✅ Prisma te génère automatiquement un client JS pour interagir facilement avec la BDD
+✅ Prêt pour **authentification, rôles, gestion d’offres et candidatures**
+✅ Facile à connecter à ton **frontend HTML / JS actuel** via une API REST ou GraphQL
+
+---
+
+Souhaites-tu que je t’aide à créer **les routes Express (API REST)** pour :
+
+* 🔹 créer un utilisateur,
+* 🔹 publier une offre,
+* 🔹 postuler à une offre,
+* 🔹 voir toutes les offres ?
+
+👉 Ce serait la prochaine étape logique pour connecter ton frontend à ta base.
